@@ -11,119 +11,118 @@
     .wrap { max-width:900px; margin:0 auto; padding:28px 16px 60px; }
     h1 { margin:0; font-size:2rem; }
     .sub { color:var(--muted); margin:8px 0 24px; }
-    .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px; box-shadow:0 10px 24px rgba(0,0,0,.2); }
-    .badge { display:inline-block; font-size:.78rem; color:#fed7aa; background:#7c2d12; border:1px solid #9a3412; border-radius:999px; padding:4px 10px; margin-bottom:10px; }
-    h2 { margin:0 0 10px; } h3 { margin:18px 0 8px; color:#fdba74; }
+    .recipe { background:var(--card); border:1px solid var(--line); border-radius:14px; margin:12px 0; overflow:hidden; }
+    details > summary { list-style:none; cursor:pointer; padding:16px 18px; font-weight:700; font-size:1.05rem; display:flex; align-items:center; gap:10px; }
+    details > summary::-webkit-details-marker { display:none; }
+    details > summary::after { content:'▾'; margin-left:auto; opacity:.85; transition:transform .2s ease; }
+    details[open] > summary::after { transform:rotate(180deg); }
+    .badge { display:inline-block; font-size:.78rem; color:#fed7aa; background:#7c2d12; border:1px solid #9a3412; border-radius:999px; padding:4px 10px; }
+    .body { padding:0 18px 18px; }
+    h3 { margin:16px 0 8px; color:#fdba74; }
     ul,ol { margin:0 0 0 20px; line-height:1.6; }
-    .meta { color:var(--muted); margin-bottom:8px; } .note { margin-top:16px; color:#cbd5e1; font-size:.95rem; }
-    .footer { margin-top:22px; color:var(--muted); font-size:.85rem; } .section { margin-top:14px; }
+    .meta { color:var(--muted); margin:2px 0 8px; }
+    .footer { margin-top:22px; color:var(--muted); font-size:.85rem; }
   </style>
 </head>
 <body>
   <div class="wrap">
     <h1>🍽️ Jamie’s Recipe Book</h1>
-    <p class="sub">Send recipes in chat and I’ll keep formatting them here.</p>
+    <p class="sub">Tap a recipe title to expand/collapse.</p>
 
-    <article class="card">
-      <span class="badge">Recipe #1</span>
-      <h2>Buffalo Chicken Burritos 🍗</h2>
-      <p class="meta"><strong>Makes:</strong> 10 burritos</p>
-      <p class="meta"><strong>Macros per burrito:</strong> 450 Calories • 60g Protein • 30g Carbs • 10g Fat</p>
+    <article class="recipe">
+      <details>
+        <summary>
+          <span class="badge">Recipe #1</span>
+          Buffalo Chicken Burritos 🍗
+        </summary>
+        <div class="body">
+          <p class="meta"><strong>Makes:</strong> 10 burritos</p>
+          <p class="meta"><strong>Macros per burrito:</strong> 450 Calories • 60g Protein • 30g Carbs • 10g Fat</p>
 
-      <div class="section">
-        <h3>Ingredients 🌯</h3>
-        <ul>
-          <li>60 oz chicken breast (1700g)</li>
-          <li>1 cup diced onions (150g)</li>
-          <li>1 tbsp garlic salt (15g)</li>
-          <li>3 tbsp ranch seasoning (30g)</li>
-          <li>0.5 tbsp black pepper (3g)</li>
-          <li>0.5 cup buffalo sauce (120g)</li>
-          <li>1 cup diced white onions (150g)</li>
-          <li>3.5 cups fat free mozzarella (400g)</li>
-          <li>Fresh chives (10g)</li>
-          <li>2.5 cups cooked white rice (500g)</li>
-          <li>10 large low calorie tortillas</li>
-        </ul>
-      </div>
+          <h3>Ingredients 🌯</h3>
+          <ul>
+            <li>60 oz chicken breast (1700g)</li>
+            <li>1 cup diced onions (150g)</li>
+            <li>1 tbsp garlic salt (15g)</li>
+            <li>3 tbsp ranch seasoning (30g)</li>
+            <li>0.5 tbsp black pepper (3g)</li>
+            <li>0.5 cup buffalo sauce (120g)</li>
+            <li>1 cup diced white onions (150g)</li>
+            <li>3.5 cups fat free mozzarella (400g)</li>
+            <li>Fresh chives (10g)</li>
+            <li>2.5 cups cooked white rice (500g)</li>
+            <li>10 large low calorie tortillas</li>
+          </ul>
 
-      <div class="section">
-        <h3>High Protein Buffalo Sauce 🌶️</h3>
-        <ul>
-          <li>2.5 cups cottage cheese (0% fat) (560g)</li>
-          <li>4 oz reduced fat cream cheese (115g)</li>
-          <li>0.5 tbsp garlic salt (7g)</li>
-          <li>0.5 tbsp black pepper (3g)</li>
-          <li>0.5 tbsp onion powder (3g)</li>
-          <li>0.5 cup buffalo sauce (120g)</li>
-          <li>2 tbsp honey (40g)</li>
-          <li>1 cup fat free milk (240g)</li>
-        </ul>
-      </div>
+          <h3>High Protein Buffalo Sauce 🌶️</h3>
+          <ul>
+            <li>2.5 cups cottage cheese (0% fat) (560g)</li>
+            <li>4 oz reduced fat cream cheese (115g)</li>
+            <li>0.5 tbsp garlic salt (7g)</li>
+            <li>0.5 tbsp black pepper (3g)</li>
+            <li>0.5 tbsp onion powder (3g)</li>
+            <li>0.5 cup buffalo sauce (120g)</li>
+            <li>2 tbsp honey (40g)</li>
+            <li>1 cup fat free milk (240g)</li>
+          </ul>
 
-      <div class="section">
-        <h3>Freezing Instructions ❄️</h3>
-        <ol>
-          <li>Wrap burritos in aluminum foil, or place in an airtight freezer bag.</li>
-          <li>Freeze up to 3 months.</li>
-        </ol>
-      </div>
+          <h3>Freezing Instructions ❄️</h3>
+          <ol>
+            <li>Wrap burritos in aluminum foil, or place in an airtight freezer bag.</li>
+            <li>Freeze up to 3 months.</li>
+          </ol>
 
-      <div class="section">
-        <h3>Reheating Instructions 🔥</h3>
-        <ol>
-          <li>Take out a frozen burrito and wrap it in a wet paper towel.</li>
-          <li>Microwave on a plate for 5–6 minutes.</li>
-          <li>Optional: toast in a pan or air fry for extra crispiness.</li>
-        </ol>
-      </div>
+          <h3>Reheating Instructions 🔥</h3>
+          <ol>
+            <li>Take out a frozen burrito and wrap it in a wet paper towel.</li>
+            <li>Microwave on a plate for 5–6 minutes.</li>
+            <li>Optional: toast in a pan or air fry for extra crispiness.</li>
+          </ol>
+        </div>
+      </details>
     </article>
 
-    <article class="card" style="margin-top:16px;">
-      <span class="badge">Recipe #2</span>
-      <h2>Chipotle Honey Chicken Burritos 🌯</h2>
-      <p class="meta"><strong>Makes:</strong> 10 burritos</p>
+    <article class="recipe">
+      <details>
+        <summary>
+          <span class="badge">Recipe #2</span>
+          Chipotle Honey Chicken Burritos 🌯
+        </summary>
+        <div class="body">
+          <p class="meta"><strong>Makes:</strong> 10 burritos</p>
 
-      <div class="section">
-        <h3>Into the Crock Pot</h3>
-        <ul>
-          <li>60 oz chicken breast (1700g)</li>
-          <li>2 tbsp garlic salt (30g)</li>
-          <li>1 tbsp onion powder (7g)</li>
-          <li>1 can chipotle peppers, 7 oz (200g)</li>
-          <li>3 tbsp honey (60g)</li>
-        </ul>
-      </div>
+          <h3>Into the Crock Pot</h3>
+          <ul>
+            <li>60 oz chicken breast (1700g)</li>
+            <li>2 tbsp garlic salt (30g)</li>
+            <li>1 tbsp onion powder (7g)</li>
+            <li>1 can chipotle peppers, 7 oz (200g)</li>
+            <li>3 tbsp honey (60g)</li>
+          </ul>
 
-      <div class="section">
-        <h3>Sauce</h3>
-        <ul>
-          <li>1 cup cottage cheese (0% fat) (225g)</li>
-          <li>1 cup tomato sauce (240g)</li>
-          <li>4 garlic cloves (12g)</li>
-          <li>0.5 cup fat free milk (120g)</li>
-        </ul>
-      </div>
+          <h3>Sauce</h3>
+          <ul>
+            <li>1 cup cottage cheese (0% fat) (225g)</li>
+            <li>1 cup tomato sauce (240g)</li>
+            <li>4 garlic cloves (12g)</li>
+            <li>0.5 cup fat free milk (120g)</li>
+          </ul>
 
-      <div class="section">
-        <h3>After the Sauce Cooks</h3>
-        <ul>
-          <li>1 cup dry rice (180g), cooked</li>
-        </ul>
-      </div>
+          <h3>After the Sauce Cooks</h3>
+          <ul>
+            <li>1 cup dry rice (180g), cooked</li>
+          </ul>
 
-      <div class="section">
-        <h3>Add Last When Building Burritos</h3>
-        <ul>
-          <li>5 cups fat free mozzarella</li>
-          <li>10 low-calorie tortillas (example: Extreme Wellness wraps, 110 cal each)</li>
-        </ul>
-      </div>
+          <h3>Add Last When Building Burritos</h3>
+          <ul>
+            <li>5 cups fat free mozzarella</li>
+            <li>10 low-calorie tortillas (example: Extreme Wellness wraps, 110 cal each)</li>
+          </ul>
 
-      <div class="section">
-        <h3>Serving Tip</h3>
-        <p>Dip with your favorite hot sauce.</p>
-      </div>
+          <h3>Serving Tip</h3>
+          <p>Dip with your favorite hot sauce.</p>
+        </div>
+      </details>
     </article>
 
     <p class="footer">Last updated by Cal.</p>
