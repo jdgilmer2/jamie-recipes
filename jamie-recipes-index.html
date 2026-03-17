@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jamie’s Recipe Book</title>
+  <style>
+    :root { --bg:#0b1220; --card:#111827; --muted:#9ca3af; --text:#e5e7eb; --line:#1f2937; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:linear-gradient(180deg,#08101d,#0b1220); color:var(--text); }
+    .wrap { max-width:900px; margin:0 auto; padding:28px 16px 60px; }
+    h1 { margin:0; font-size:2rem; }
+    .sub { color:var(--muted); margin:8px 0 24px; }
+    .recipe { background:var(--card); border:1px solid var(--line); border-radius:14px; margin:12px 0; overflow:hidden; }
+    details > summary { list-style:none; cursor:pointer; padding:16px 18px; font-weight:700; font-size:1.05rem; display:flex; align-items:center; gap:10px; }
+    details > summary::-webkit-details-marker { display:none; }
+    details > summary::after { content:'▾'; margin-left:auto; opacity:.85; transition:transform .2s ease; }
+    details[open] > summary::after { transform:rotate(180deg); }
+    .badge { display:inline-block; font-size:.78rem; color:#fed7aa; background:#7c2d12; border:1px solid #9a3412; border-radius:999px; padding:4px 10px; }
+    .body { padding:0 18px 18px; }
+    h3 { margin:16px 0 8px; color:#fdba74; }
+    ul,ol { margin:0 0 0 20px; line-height:1.6; }
+    .meta { color:var(--muted); margin:2px 0 8px; }
+    .footer { margin-top:22px; color:var(--muted); font-size:.85rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>🍽️ Jamie’s Recipe Book</h1>
+    <p class="sub">Tap a recipe title to expand/collapse.</p>
+
+    <article class="recipe">
+      <details>
+        <summary>
+          <span class="badge">Recipe #1</span>
+          Buffalo Chicken Burritos 🍗
+        </summary>
+        <div class="body">
+          <p class="meta"><strong>Makes:</strong> 10 burritos</p>
+          <p class="meta"><strong>Macros per burrito:</strong> 450 Calories • 60g Protein • 30g Carbs • 10g Fat</p>
+
+          <h3>Ingredients 🌯</h3>
+          <ul>
+            <li>60 oz chicken breast (1700g)</li>
+            <li>1 cup diced onions (150g)</li>
+            <li>1 tbsp garlic salt (15g)</li>
+            <li>3 tbsp ranch seasoning (30g)</li>
+            <li>0.5 tbsp black pepper (3g)</li>
+            <li>0.5 cup buffalo sauce (120g)</li>
+            <li>1 cup diced white onions (150g)</li>
+            <li>3.5 cups fat free mozzarella (400g)</li>
+            <li>Fresh chives (10g)</li>
+            <li>2.5 cups cooked white rice (500g)</li>
+            <li>10 large low calorie tortillas</li>
+          </ul>
+
+          <h3>High Protein Buffalo Sauce 🌶️</h3>
+          <ul>
+            <li>2.5 cups cottage cheese (0% fat) (560g)</li>
+            <li>4 oz reduced fat cream cheese (115g)</li>
+            <li>0.5 tbsp garlic salt (7g)</li>
+            <li>0.5 tbsp black pepper (3g)</li>
+            <li>0.5 tbsp onion powder (3g)</li>
+            <li>0.5 cup buffalo sauce (120g)</li>
+            <li>2 tbsp honey (40g)</li>
+            <li>1 cup fat free milk (240g)</li>
+          </ul>
+
+          <h3>Freezing Instructions ❄️</h3>
+          <ol>
+            <li>Wrap burritos in aluminum foil, or place in an airtight freezer bag.</li>
+            <li>Freeze up to 3 months.</li>
+          </ol>
+
+          <h3>Reheating Instructions 🔥</h3>
+          <ol>
+            <li>Take out a frozen burrito and wrap it in a wet paper towel.</li>
+            <li>Microwave on a plate for 5–6 minutes.</li>
+            <li>Optional: toast in a pan or air fry for extra crispiness.</li>
+          </ol>
+        </div>
+      </details>
+    </article>
+
+    <article class="recipe">
+      <details>
+        <summary>
+          <span class="badge">Recipe #2</span>
+          Chipotle Honey Chicken Burritos 🌯
+        </summary>
+        <div class="body">
+          <p class="meta"><strong>Makes:</strong> 10 burritos</p>
+
+          <h3>Into the Crock Pot</h3>
+          <ul>
+            <li>60 oz chicken breast (1700g)</li>
+            <li>2 tbsp garlic salt (30g)</li>
+            <li>1 tbsp onion powder (7g)</li>
+            <li>1 can chipotle peppers, 7 oz (200g)</li>
+            <li>3 tbsp honey (60g)</li>
+          </ul>
+
+          <h3>Sauce</h3>
+          <ul>
+            <li>1 cup cottage cheese (0% fat) (225g)</li>
+            <li>1 cup tomato sauce (240g)</li>
+            <li>4 garlic cloves (12g)</li>
+            <li>0.5 cup fat free milk (120g)</li>
+          </ul>
+
+          <h3>After the Sauce Cooks</h3>
+          <ul>
+            <li>1 cup dry rice (180g), cooked</li>
+          </ul>
+
+          <h3>Add Last When Building Burritos</h3>
+          <ul>
+            <li>5 cups fat free mozzarella</li>
+            <li>10 low-calorie tortillas (example: Extreme Wellness wraps, 110 cal each)</li>
+          </ul>
+
+          <h3>Serving Tip</h3>
+          <p>Dip with your favorite hot sauce.</p>
+        </div>
+      </details>
+    </article>
+
+    <article class="recipe">
+      <details>
+        <summary>
+          <span class="badge">Recipe #3</span>
+          Nightly Research Picks: High-Protein Burrito Bowls 🥣
+        </summary>
+        <div class="body">
+          <p class="meta">Auto-curated low-calorie / high-protein finds from Crockpot & Instant Pot research.</p>
+          <ul>
+            <li><strong>Instant Pot Burrito Bowls</strong> — 211 cal, 28g protein (Instant Pot) — <a href="https://mycrazygoodlife.com/instant-pot-21-day-fix-burrito-bowl/" target="_blank">link</a></li>
+            <li><strong>Instant Pot Chicken Burrito Bowls (Low-Carb & Whole30)</strong> — 167 cal, 26g protein (Instant Pot) — <a href="https://detoxinista.com/instant-pot-chicken-burrito-bowls/" target="_blank">link</a></li>
+            <li><strong>Slow Cooker Chicken Burrito Bowl</strong> — 261 cal, 32g protein (Crockpot/Slow Cooker) — <a href="https://lemonsandzest.com/clean-eating-slow-cooker-burrito-bowls-2/" target="_blank">link</a></li>
+            <li><strong>Instant Pot Chicken Burrito Bowls</strong> — 406 cal, 28g protein (Instant Pot) — <a href="https://thegirlonbloor.com/20-minute-instant-pot-chicken-burrito-bowls/" target="_blank">link</a></li>
+            <li><strong>Slow Cooker Burrito Bowls</strong> — 425 cal, 55.6g protein (Crockpot/Slow Cooker) — <a href="https://theproteinchef.co/slow-cooker-burrito-bowls-recipe/" target="_blank">link</a></li>
+          </ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="recipe">
+      <details>
+        <summary>
+          <span class="badge">Recipe #4</span>
+          Cheesy Beef Dipping Burritos 🔥
+        </summary>
+        <div class="body">
+          <p class="meta"><strong>Macros:</strong> 190 Calories • 15g Carbs • 7g Fat • 24g Protein</p>
+          <ul>
+            <li><strong>Video:</strong> <a href="https://www.youtube.com/watch?v=siyCb0cAdyE" target="_blank">https://www.youtube.com/watch?v=siyCb0cAdyE</a></li>
+          </ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="recipe">
+      <details>
+        <summary>
+          <span class="badge">Recipe #5</span>
+          Nashville Hot Honey Chicken Crunch Wrap 🌶️
+        </summary>
+        <div class="body">
+          <p class="meta">From video chapter list.</p>
+          <ul>
+            <li><strong>Video:</strong> <a href="https://www.youtube.com/watch?v=siyCb0cAdyE&t=318s" target="_blank">starts at 05:18</a></li>
+          </ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="recipe">
+      <details>
+        <summary>
+          <span class="badge">Recipe #6</span>
+          Chicken, Bacon, Ranch Pinwheels 🥓
+        </summary>
+        <div class="body">
+          <p class="meta">From video chapter list.</p>
+          <ul>
+            <li><strong>Video:</strong> <a href="https://www.youtube.com/watch?v=siyCb0cAdyE&t=665s" target="_blank">starts at 11:05</a></li>
+          </ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="recipe">
+      <details>
+        <summary>
+          <span class="badge">Recipe #7</span>
+          Crispy Jalapeño Popper Pockets 🌶️
+        </summary>
+        <div class="body">
+          <p class="meta">From video chapter list.</p>
+          <ul>
+            <li><strong>Video:</strong> <a href="https://www.youtube.com/watch?v=siyCb0cAdyE&t=854s" target="_blank">starts at 14:14</a></li>
+          </ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="recipe">
+      <details>
+        <summary>
+          <span class="badge">Recipe #8</span>
+          Buffalo Chicken Pocket Pizza 🍕
+        </summary>
+        <div class="body">
+          <p class="meta">From video chapter list.</p>
+          <ul>
+            <li><strong>Video:</strong> <a href="https://www.youtube.com/watch?v=siyCb0cAdyE&t=1076s" target="_blank">starts at 17:56</a></li>
+          </ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="recipe">
+      <details>
+        <summary>
+          <span class="badge">Recipe #9</span>
+          Meal Prep Freezer Breakfast Burritos 🍳
+        </summary>
+        <div class="body">
+          <p class="meta">From video chapter list.</p>
+          <ul>
+            <li><strong>Video:</strong> <a href="https://www.youtube.com/watch?v=siyCb0cAdyE&t=1253s" target="_blank">starts at 20:53</a></li>
+          </ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="recipe">
+      <details>
+        <summary>
+          <span class="badge">Recipe #10</span>
+          PizzaDillas 🧀
+        </summary>
+        <div class="body">
+          <p class="meta">From video chapter list.</p>
+          <ul>
+            <li><strong>Video:</strong> <a href="https://www.youtube.com/watch?v=siyCb0cAdyE&t=1525s" target="_blank">starts at 25:25</a></li>
+          </ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="recipe">
+      <details>
+        <summary>
+          <span class="badge">Recipe #11</span>
+          Nightly Research Picks: Healthy Slow-Cooker Meal Prep (Mar 17, 2026) 🥘
+        </summary>
+        <div class="body">
+          <p class="meta">Top practical low-calorie Crockpot/slow-cooker meals with strong protein/fiber and easy leftovers.</p>
+          <ul>
+            <li><strong>Crock Pot Santa Fe Chicken</strong> — 183 kcal per 3/4 cup • 24g protein, 3.5g fiber • meal-prep + freezer friendly. <a href="https://www.skinnytaste.com/crock-pot-santa-fe-chicken-425-pts/" target="_blank">link</a></li>
+            <li><strong>Easiest Salsa Verde Chicken (Slow Cooker)</strong> — 167 kcal per 1/2 cup chicken • 26.5g protein • explicitly designed for bowls/tacos + 4-day fridge / 3-month freezer. <a href="https://www.skinnytaste.com/easiest-crock-pot-salsa-verde-chicken/" target="_blank">link</a></li>
+            <li><strong>Slow Cooker Ground Beef Ragu</strong> — 176 kcal per 7/8 cup • balanced macros (16g protein, 7g fat) • stores 3–4 days and freezes up to 6 months. <a href="https://www.skinnytaste.com/slow-cooker-beef-ragu/" target="_blank">link</a></li>
+            <li><strong>Crock Pot Chicken Taco Chili</strong> — 220 kcal per scant cup • 21g protein, 8.5g fiber • big-batch, freezer-friendly slow-cooker staple. <a href="https://www.skinnytaste.com/crock-pot-chicken-taco-chili-4-pts/" target="_blank">link</a></li>
+            <li><strong>Slow Cooker Shredded Chicken</strong> — 272 kcal per 6 oz • 51g protein • high-protein base for bowls, tacos, salads, and soups all week. <a href="https://www.skinnytaste.com/slow-cooker-shredded-chicken/" target="_blank">link</a></li>
+          </ul>
+        </div>
+      </details>
+    </article>
+
+    <p class="footer">Last updated by Cal.</p>
+  </div>
+</body>
+</html>
