@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Improvements Planner</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --muted: #94a3b8;
+      --line: #1f2937;
+      --text: #e5e7eb;
+      --accent: #22c55e;
+      --accent2: #38bdf8;
+      --danger: #ef4444;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg, #020617, #0f172a);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 16px 60px;
+    }
+    h1 { margin: 0 0 8px; font-size: 2rem; }
+    .sub { color: var(--muted); margin-bottom: 18px; }
+    .card {
+      background: color-mix(in hsl, var(--card) 90%, black 10%);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,.25);
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(2, 6, 23, .45);
+    }
+    button {
+      background: #0b1220;
+      color: var(--text);
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 9px 12px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    button:hover { border-color: var(--accent2); }
+    .saveNote {
+      margin-left: auto;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .tableWrap { overflow: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 880px;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #0b1220;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      font-size: .92rem;
+      color: #cbd5e1;
+    }
+    td[contenteditable="true"] {
+      outline: none;
+      border-radius: 8px;
+    }
+    td[contenteditable="true"]:focus {
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent2) 60%, transparent);
+      background: rgba(56,189,248,0.08);
+    }
+    .num { text-align: right; white-space: nowrap; }
+    .priority {
+      width: 90px;
+      border: 1px solid #334155;
+      background: #0b1220;
+      color: var(--text);
+      border-radius: 8px;
+      padding: 6px;
+    }
+    .deleteBtn {
+      border: 1px solid #7f1d1d;
+      color: #fecaca;
+      background: rgba(127,29,29,0.2);
+      border-radius: 8px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: .85rem;
+    }
+    tfoot td {
+      font-weight: 700;
+      background: rgba(2,6,23,.55);
+    }
+    .totalLabel { text-align: right; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #334155;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: .82rem;
+      color: #bfdbfe;
+      background: rgba(59,130,246,0.12);
+    }
+    .footerNote {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>🏠 Home Improvements Planner</h1>
+    <div class="sub">Track projects, material + labor costs, and priority. Rows auto-sort by priority (highest first). Data auto-saves in your browser.</div>
+
+    <div class="card">
+      <div class="toolbar">
+        <button id="addRow">+ Add Project</button>
+        <button id="sortBtn">Sort by Priority</button>
+        <button id="clearBtn">Clear All</button>
+        <span class="pill">Priority: 5 = Highest</span>
+        <span class="saveNote" id="saveNote">Not saved yet</span>
+      </div>
+
+      <div class="tableWrap">
+        <table id="plannerTable">
+          <thead>
+            <tr>
+              <th style="width: 34%">Project</th>
+              <th style="width: 24%">Materials</th>
+              <th class="num" style="width: 12%">Material Cost ($)</th>
+              <th class="num" style="width: 12%">Labor Cost ($)</th>
+              <th class="num" style="width: 12%">Line Total ($)</th>
+              <th style="width: 6%">Priority</th>
+              <th style="width: 6%">Action</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4" class="totalLabel">Grand Total</td>
+              <td class="num" id="grandTotal">$0.00</td>
+              <td colspan="2"></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <div class="footerNote">Tip: Click directly in Project / Materials / costs to edit. Costs can be whole numbers or decimals.</div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'home-improvements-planner-v1';
+    const tbody = document.getElementById('tbody');
+    const grandTotalEl = document.getElementById('grandTotal');
+    const saveNote = document.getElementById('saveNote');
+
+    function money(n) {
+      const num = Number(n) || 0;
+      return '$' + num.toFixed(2);
+    }
+
+    function parseNum(v) {
+      if (typeof v === 'number') return v;
+      const cleaned = String(v || '').replace(/[^0-9.-]/g, '');
+      const n = parseFloat(cleaned);
+      return Number.isFinite(n) ? n : 0;
+    }
+
+    function getRowsData() {
+      return [...tbody.querySelectorAll('tr')].map(tr => {
+        const project = tr.querySelector('.project').textContent.trim();
+        const materials = tr.querySelector('.materials').textContent.trim();
+        const materialCost = parseNum(tr.querySelector('.materialCost').textContent);
+        const laborCost = parseNum(tr.querySelector('.laborCost').textContent);
+        const priority = parseInt(tr.querySelector('.priority').value || '3', 10);
+        return { project, materials, materialCost, laborCost, priority };
+      });
+    }
+
+    function updateLineAndTotals() {
+      let grand = 0;
+      [...tbody.querySelectorAll('tr')].forEach(tr => {
+        const m = parseNum(tr.querySelector('.materialCost').textContent);
+        const l = parseNum(tr.querySelector('.laborCost').textContent);
+        const line = m + l;
+        grand += line;
+        tr.querySelector('.lineTotal').textContent = money(line);
+      });
+      grandTotalEl.textContent = money(grand);
+    }
+
+    function save() {
+      const rows = getRowsData();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(rows));
+      updateLineAndTotals();
+      saveNote.textContent = 'Saved ' + new Date().toLocaleTimeString();
+    }
+
+    function addRow(data = {}) {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td class="project" contenteditable="true">${data.project || ''}</td>
+        <td class="materials" contenteditable="true">${data.materials || ''}</td>
+        <td class="materialCost num" contenteditable="true">${(data.materialCost ?? '').toString()}</td>
+        <td class="laborCost num" contenteditable="true">${(data.laborCost ?? '').toString()}</td>
+        <td class="lineTotal num">$0.00</td>
+        <td>
+          <select class="priority" aria-label="Priority">
+            <option value="5" ${data.priority === 5 ? 'selected' : ''}>5</option>
+            <option value="4" ${data.priority === 4 ? 'selected' : ''}>4</option>
+            <option value="3" ${data.priority === 3 || data.priority == null ? 'selected' : ''}>3</option>
+            <option value="2" ${data.priority === 2 ? 'selected' : ''}>2</option>
+            <option value="1" ${data.priority === 1 ? 'selected' : ''}>1</option>
+          </select>
+        </td>
+        <td><button class="deleteBtn">Delete</button></td>
+      `;
+
+      tr.addEventListener('input', save);
+      tr.querySelector('.priority').addEventListener('change', () => { sortByPriority(); save(); });
+      tr.querySelector('.deleteBtn').addEventListener('click', () => {
+        tr.remove();
+        save();
+      });
+
+      tbody.appendChild(tr);
+      updateLineAndTotals();
+    }
+
+    function sortByPriority() {
+      const rows = [...tbody.querySelectorAll('tr')];
+      rows.sort((a, b) => {
+        const pa = parseInt(a.querySelector('.priority').value || '0', 10);
+        const pb = parseInt(b.querySelector('.priority').value || '0', 10);
+        return pb - pa;
+      });
+      rows.forEach(r => tbody.appendChild(r));
+    }
+
+    function clearAll() {
+      if (!confirm('Clear all projects?')) return;
+      tbody.innerHTML = '';
+      localStorage.removeItem(STORAGE_KEY);
+      addRow({ priority: 5, project: 'Roof inspection', materials: 'Shingles + flashing', materialCost: 450, laborCost: 900 });
+      addRow({ priority: 4, project: 'Paint living room', materials: 'Paint + rollers + tape', materialCost: 180, laborCost: 320 });
+      addRow({ priority: 3, project: 'Replace bathroom faucet', materials: 'Faucet + plumber tape', materialCost: 120, laborCost: 160 });
+      sortByPriority();
+      save();
+    }
+
+    function load() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) {
+        addRow({ priority: 5, project: 'Roof inspection', materials: 'Shingles + flashing', materialCost: 450, laborCost: 900 });
+        addRow({ priority: 4, project: 'Paint living room', materials: 'Paint + rollers + tape', materialCost: 180, laborCost: 320 });
+        addRow({ priority: 3, project: 'Replace bathroom faucet', materials: 'Faucet + plumber tape', materialCost: 120, laborCost: 160 });
+        sortByPriority();
+        updateLineAndTotals();
+        return;
+      }
+
+      try {
+        const rows = JSON.parse(raw);
+        if (Array.isArray(rows) && rows.length) {
+          rows.forEach(r => addRow(r));
+          sortByPriority();
+          updateLineAndTotals();
+        } else {
+          addRow({ priority: 3 });
+        }
+      } catch {
+        addRow({ priority: 3 });
+      }
+    }
+
+    document.getElementById('addRow').addEventListener('click', () => {
+      addRow({ priority: 3 });
+      sortByPriority();
+      save();
+    });
+    document.getElementById('sortBtn').addEventListener('click', () => {
+      sortByPriority();
+      save();
+    });
+    document.getElementById('clearBtn').addEventListener('click', clearAll);
+
+    load();
+  </script>
+</body>
+</html>
